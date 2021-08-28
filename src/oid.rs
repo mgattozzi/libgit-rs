@@ -1,4 +1,4 @@
-use crate::Blob;
+use crate::{Blob, Tree};
 use sha1::{Digest, Sha1};
 use std::convert::TryInto;
 use thiserror::Error;
@@ -28,6 +28,10 @@ impl OID {
     // above for the length of 40
     Ok(Self(bytes.try_into().unwrap()))
   }
+
+  pub fn as_bytes(&self) -> [u8; 20] {
+    self.0
+  }
 }
 
 impl From<Blob> for OID {
@@ -51,6 +55,33 @@ impl From<&Blob> for OID {
 impl From<&mut Blob> for OID {
   fn from(blob: &mut Blob) -> Self {
     let bytes = blob.as_bytes();
+    let mut hasher = Sha1::new();
+    hasher.update(bytes);
+    Self(hasher.finalize().into())
+  }
+}
+
+impl From<Tree> for OID {
+  fn from(tree: Tree) -> Self {
+    let bytes = tree.as_bytes();
+    let mut hasher = Sha1::new();
+    hasher.update(bytes);
+    Self(hasher.finalize().into())
+  }
+}
+
+impl From<&Tree> for OID {
+  fn from(tree: &Tree) -> Self {
+    let bytes = tree.as_bytes();
+    let mut hasher = Sha1::new();
+    hasher.update(bytes);
+    Self(hasher.finalize().into())
+  }
+}
+
+impl From<&mut Tree> for OID {
+  fn from(tree: &mut Tree) -> Self {
+    let bytes = tree.as_bytes();
     let mut hasher = Sha1::new();
     hasher.update(bytes);
     Self(hasher.finalize().into())

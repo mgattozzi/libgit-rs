@@ -18,10 +18,14 @@ categories = [
 ]
 
 [dependencies]
+bitvec = "^0.22.3"
 bstr = "^0.2.16"
 hex = "^0.4.3"
+is_executable = "^1.0.1"
+pathdiff = "^0.2.0"
 sha-1 = "^0.9.8"
 thiserror = "^1.0.26"
+walkdir = "^2.3.2"
 
 [dev-dependencies]
 tempdir = "^0.3.7"
