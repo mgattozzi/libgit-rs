@@ -1,0 +1,27 @@
+[package]
+name = "libgit-rs"
+version = "0.1.0"
+authors = ["Michael Gattozzi <self@mgattozzi.dev>"]
+edition = "2018"
+description = "A pure Rust library to interact with git repositories"
+documentation = "https://docs.rs/libgit-rs"
+readme = "README.md"
+license = "MIT"
+keywords = [
+  "git",
+  "rust",
+  "library"
+]
+categories = [
+  "filesystem",
+  "text-processing"
+]
+
+[dependencies]
+bstr = "^0.2.16"
+hex = "^0.4.3"
+sha-1 = "^0.9.8"
+thiserror = "^1.0.26"
+
+[dev-dependencies]
+tempdir = "^0.3.7"
